@@ -7,9 +7,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
-  id;
-  toggle: Boolean = false;
   list: Array<any> = [];
   constructor(private service: TodoService) {
 
