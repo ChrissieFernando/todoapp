@@ -20,4 +20,8 @@ export class AppComponent implements OnInit {
   onClick(user, checkBox) {
     user.completed = checkBox.checked;
   }
+   onRemove(user) {
+    const index = this.list.indexOf(user);
+    this.list.splice(index, 1);
+  }
 }
