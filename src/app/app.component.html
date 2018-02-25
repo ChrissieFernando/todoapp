@@ -1,24 +1,55 @@
 
 <div class="container">
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">USER_ID</th>
-            <th scope="col">ID</th>
-            <th scope="col">TITLE</th>
-            <th scope="col">COMPLETED</th>
-            <th scope="col">REMOVE</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of list">
-            <td>{{user.userId}}</td>
-            <td>{{user.id}}</td>
-            <td [class.checked]=" user.completed " >{{user.title}}</td>
-            <!-- checkBoxValue is reference to input dom element -->
-            <td class="text-center"><input type="checkbox" #checkBoxValue (click)="onClick(user,checkBoxValue)"  [checked]="user.completed"/></td>
-            <td><button class="btn btn-danger" (click)="onRemove(user)">Remove</button></td>
-          </tr>
-        </tbody>
-      </table>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">USER_ID</th>
+        <th scope="col">ID</th>
+        <th scope="col">TITLE</th>
+        <th scope="col">COMPLETED</th>
+        <th scope="col">REMOVE</th>
+        <th scope="col">EDIT</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let user of list">
+      <tr>
+        <td>{{user.userId}}</td>
+        <td>{{user.id}}</td>
+        <td [class.checked]=" user.completed ">{{user.title}}</td>
+        <!-- checkBoxValue is reference to input dom element -->
+        <td class="text-center">
+          <input type="checkbox" #checkBoxValue (click)="onClick(user,checkBoxValue)" [checked]="user.completed" />
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="onRemove(user)">Remove</button>
+        </td>
+        <td>
+          <button class="btn btn-dark" (click)="onEdit(user)">Edit</button>
+        </td>
+      </tr>
+      <tr *ngIf="id == user.id ? user.toggle : false">
+        <td> </td>
+        <td> </td>
+        <td>
+          <div >
+            <form>
+              <div class="form-row">
+                <div class="form-group mb-2">
+                    <label for="title" class="sr-only">Tilte</label>
+                  <input type="text" [value]="user.title" #title class="form-control" id="title">
+                </div>
+                <div class="form-check mx-sm-3 mb-2">
+                  <input type="checkbox" class="form-check-input" [checked]="user.completed" #checkBox id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">completed</label>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-info" [disabled]="user.disabled" (click)="onSave(user,title,checkBox)">{{user.save}}</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
