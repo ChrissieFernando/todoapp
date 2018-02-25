@@ -1,7 +1,8 @@
 
-<div class="container">
-  <table class="table">
-    <thead>
+
+<div class="container table-stripped" >
+  <table class="table table-hover " >
+    <thead style="background: black;color: orange">
       <tr>
         <th scope="col">USER_ID</th>
         <th scope="col">ID</th>
@@ -13,11 +14,11 @@
     </thead>
     <tbody *ngFor="let user of list">
       <tr>
-        <td>{{user.userId}}</td>
-        <td>{{user.id}}</td>
+        <td [class.userID]=" user.completed ">{{user.userId}}</td>
+        <td [class.id]=" user.completed ">{{user.id}}</td>
         <td [class.checked]=" user.completed ">{{user.title}}</td>
         <!-- checkBoxValue is reference to input dom element -->
-        <td class="text-center">
+        <td class="text-center" [class.userID]=" user.completed ">
           <input type="checkbox" #checkBoxValue (click)="onClick(user,checkBoxValue)" [checked]="user.completed" />
         </td>
         <td>
@@ -28,9 +29,9 @@
         </td>
       </tr>
       <tr *ngIf="id == user.id ? user.toggle : false">
-        <td> </td>
-        <td> </td>
-        <td>
+        <td></td>
+        <td></td>
+        <td td colspan="2" >
           <div >
             <form>
               <div class="form-row">
@@ -38,7 +39,7 @@
                     <label for="title" class="sr-only">Tilte</label>
                   <input type="text" [value]="user.title" #title class="form-control" id="title">
                 </div>
-                <div class="form-check mx-sm-3 mb-2">
+                <div class="form-check mx-sm-3 mb-2 text-center">
                   <input type="checkbox" class="form-check-input" [checked]="user.completed" #checkBox id="exampleCheck1">
                   <label class="form-check-label" for="exampleCheck1">completed</label>
                 </div>
@@ -53,3 +54,4 @@
     </tbody>
   </table>
 </div>
+
