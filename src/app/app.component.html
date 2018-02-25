@@ -7,6 +7,7 @@
             <th scope="col">ID</th>
             <th scope="col">TITLE</th>
             <th scope="col">COMPLETED</th>
+            <th scope="col">REMOVE</th>
           </tr>
         </thead>
         <tbody>
@@ -16,6 +17,7 @@
             <td [class.checked]=" user.completed " >{{user.title}}</td>
             <!-- checkBoxValue is reference to input dom element -->
             <td class="text-center"><input type="checkbox" #checkBoxValue (click)="onClick(user,checkBoxValue)"  [checked]="user.completed"/></td>
+            <td><button class="btn btn-danger" (click)="onRemove(user)">Remove</button></td>
           </tr>
         </tbody>
       </table>
